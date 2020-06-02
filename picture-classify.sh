@@ -2,7 +2,7 @@
 
 DISTINATION=dist
 
-function classification() {
+function classify() {
   local _f=$1
   local _subDir
   _subDir=$(exiftool "${_f}" | grep "File Modification Date/Time" | sed 's/.*: //g' | awk '{ print $1}' | tr : _)
@@ -16,7 +16,7 @@ function classification() {
 
 while read -r l ;do
   [[ -z $l ]] && exit
-  classification "$l"
+  classify "$l"
 done <<_EOL_
 $(find . \
   -type f \
